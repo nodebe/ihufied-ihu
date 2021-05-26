@@ -1,0 +1,7 @@
+<p>Hello {{user.username}},</p>
+<p>To confirm your email address, <a href="{{url_for('auth.change_email', token=token, _external=true)}}">click here</a></p>
+<p>Alternatively, you can copy this link to your browser address bar:</p>
+<p>{{url_for('auth.change_email', token=token, _external=True)}}</p>
+<p>Sincerely,</p>
+<p>Project Ihu Team,</p>
+<p><small>Note: replies to this email are not monitored.</small></p>

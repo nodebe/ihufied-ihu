@@ -1,0 +1,46 @@
+{% extends 'portal.html' %}
+
+{%block page_content%}
+     <div class="bg-mattBlackLight p-3">
+        <h4 class="mb-2">Register student courses</h4>
+     </div>
+     <div class="mt-4">
+	     <form method="POST">
+	     	{% from 'includes/_formhelpers.html' import render_field %}
+	     	{{ form.hidden_tag() }}
+		  <div class="form-group">
+		    <label for="regnumber">Reg number</label>
+		    {{render_field(form.regnumber, class_='form-control col-md-4', id='regnumber', required='true')}}
+		  </div>
+		  <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+	{% if courses != []    %} 
+	<div class="mt-4">
+		<h4 class="mb-2">Select courses</h4>
+		<form method="POST" action="{{url_for('portal.submit_registered_courses', student_number=student_number.regnumber)}}">
+			{% for course in courses %}
+			 	<div class="form-check-inline">
+				  <label class="form-check-label">
+						{% if course in student_number.course_subscription %}
+						<input type="checkbox" checked="true" class="form-check-input" name="course_select" value="{{course.title}}">{{course.name}}({{course.title}})
+						{% else %}
+						<input type="checkbox" class="form-check-input" name="course_select" value="{{course.title}}">{{course.name}}({{course.title}})
+						{% endif %}
+				  </label>
+				</div>
+			{% endfor %}
+		  <div class="row">
+			  <div class="col-12">
+			  	<button type="submit" class="btn btn-primary mt-2">Submit</button>
+			  </div>
+		  </div>
+		</form> 
+		<div class="mt-4">
+			{% for course in student_number.course_subscription %}
+				<p>{{course.name}} <i class="fas fa-check-circle"></i></p>
+			{% endfor %}
+		</div>
+	</div>
+	{% endif %}
+{%endblock%}

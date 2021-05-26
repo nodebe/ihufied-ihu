@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+
+{%block page_content %}
+<div class="container">
+   <div class="card ">
+        <h4 class="card-title">Our Vision</h4>
+        <h6 class="card-subtitle mb-2 text-muted">...mitigating examination impersonation with trailing facial recognition technologies</h6>
+        <img class="card-img-top img-responsive"  src="{{url_for('static', filename='landing.png')}}" alt="Facial recognition image"/>
+        <div class="card-body">
+        <p class="card-text">Ihufied is aimed to equip Universities with trialling facial recognition technologies to crack down on students who pay impersonators to sit for their exams. Our technology creates biometric profiles of students and then matches this with photos taken during exams. Our technology has over 90% accuracy, enjoy our portal.</p>
+    </div>
+
+    <div>
+        <h6 class="card-subtitle mb-1 text-muted">Current session info: Checked in {{moment(current_time).format('LLLL')}}. That was {{moment(current_time).fromNow(refresh=True)}}</h6>
+    </div>
+    </div> 
+</div>
+{%endblock%}

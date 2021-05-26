@@ -1,0 +1,42 @@
+
+.navbar-brand{
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.3em
+}
+.card{
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+    width: 60rem;
+}
+.card-title{
+    font-size: 2em;
+    font-weight: 600;
+}
+.card-text{
+    margin: 10px auto;
+}
+
+.message_sent{
+    width: 30%;
+    height: 10%;
+    
+}
+
+.unconfirm-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rounded-circle:hover {
+    width: 200px;
+    height: 200px;
+
+}
+@media only screen and (max-width: 630px) {
+    .card{
+        width: 30rem;
+    }
+  }
+

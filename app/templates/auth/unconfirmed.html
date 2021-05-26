@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+<div class="jumbotron container unconfirm-container" style="width: 64%">
+    <h3 class="text-center">Hello, {{user.username}}</h3>
+
+    <img class="message_sent img-responsive" src="{{url_for('static', filename='message_sent.svg')}}" alt="message sent">
+
+    <h4>You have not confirmed your account yet!</h6>
+    <h5 class="text-center">Before you access the portal and other resources, you need to confirm your account.<br/> Check your inbox or SPAM folder, you should have received an email with a confirmation link</h5>
+    <h6 class="font-weight-light">Need another confirmation mail? <a href="{{url_for('auth.resend_confirmation')}}">Click here</a></h6>
+</div>
+{% endblock %}

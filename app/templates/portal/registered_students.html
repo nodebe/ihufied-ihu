@@ -1,0 +1,63 @@
+{% extends 'portal.html' %}
+
+{%block page_content%}
+     <div class="bg-mattBlackLight p-3">
+        <h4 class="mb-2">Registered Students</h4>
+     </div>
+     <table style="width: 100%;">
+       <tr style="height:50px; border-bottom: 5px solid rgb(41, 40, 40)">
+            <th>Photo id</th>
+            <th>Last Name</th>
+            <th>Middle Name</th>
+            <th>First Name</th>
+            <th>Reg No</th>
+            <th>Department</th>
+            <th>level</th>
+            <th></th>
+        </tr>         
+         {%for student in student.items%}
+         <tr style="border-bottom: 5px solid rgb(41, 40, 40) ">
+            <td>
+               <img class="rounded-circle" style="width: 70px; height: 70px;"
+                  src="{{url_for('static', filename ='images/' + student.image_name)}}" alt="">
+            </td>
+            <td>
+               {{student.lastname}}
+            </td>
+            <td>
+               {{student.middlename}}
+            </td>
+            <td>
+               {{student.firstname}}
+            </td>
+            <td>
+               {{student.regnumber}}
+            </td>
+            <td>
+               {{student.department.name}}
+            </td>
+            <td>
+               {{student.level}}
+            </td>
+            <td>
+               <form action="{{url_for('portal.registered_students')}}" method="POST">
+                  <button type="submit" class="btn btn-primary" name="detail" value="{{student.id}}">View</button>
+               </form>
+            </td>
+         </tr>
+         {%endfor%}
+      </table>
+      {% for page_num in student.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+      {% if page_num %}
+      {% if student.page == page_num %}
+      <a class="btn btn-info mb-4 mt-4" href="{{ url_for('portal.registered_students', page=page_num) }}">{{ page_num }}</a>
+      {% else %}
+      <a class="btn btn-outline-info mb-4 mt-4" href="{{ url_for('portal.registered_students', page=page_num) }}">{{ page_num }}</a>
+      {% endif %}
+      {% else %}
+      ...
+      {% endif %}
+      {%endfor%}  
+   
+
+{%endblock%}

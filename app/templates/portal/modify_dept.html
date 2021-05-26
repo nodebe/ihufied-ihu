@@ -1,0 +1,61 @@
+{% extends 'portal.html' %}
+
+{%block page_content%}
+     <div class="bg-mattBlackLight p-3 mb-4">
+        <h4 class="mb-2">Create Course/Department/Faculty</h4>
+     </div>
+	<div class="mt-4">
+		<h4>Create Course</h4><hr style="background-color: #fff;">
+	     <form action="{{url_for('portal.create_course')}}" method="POST">
+     	{% from 'includes/_formhelpers.html' import render_field %}
+	     	{{ makecourseform.hidden_tag() }}
+		  <div class="form-group">
+		  	<div class="row">
+		  	<div class="col-md-4">
+			    <label for="coursename">Course name</label>
+			    {{render_field(makecourseform.name, class_='form-control', id='coursename', required='true')}}
+			</div>
+			<div class="col-md-4">
+			    <label for="coursetitle">Course Title</label>
+			    {{render_field(makecourseform.title, class_='form-control', id='coursetitle', required='true')}}
+			</div>
+			<div class='col-md-4'>
+				<label for="relateddepartment"></label>
+		    	{{render_field(makecourseform.department, class_='form-control', id='relateddepartment', required='true')}}
+			</div>
+		</div>
+		  </div>
+		  <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+	<div class="mt-4">
+		<h4>Create Department</h4><hr style="background-color: #fff;">
+	     <form action="{{url_for('portal.create_department')}}" method="POST">
+	     	{{ makedepartmentform.hidden_tag() }}
+		  <div class="form-group">
+		  	<div class="row">
+		  	<div class="col-md-6">
+			    <label for="departmentname">Department name</label>
+			    {{render_field(makedepartmentform.name, class_='form-control', id='departmentname', required='true')}}
+			</div>
+			<div class='col-md-6'>
+				<label for="relatedfaculty"></label>
+		    	{{render_field(makedepartmentform.faculty, class_='form-control', id='relatedfaculty', required='true')}}
+			</div>
+		</div>
+		  </div>
+		  <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+	<div class="mt-4">
+     <h4>Create Faculty</h4><hr style="background-color: #fff;">
+     <form action="{{url_for('portal.create_faculty')}}" method="POST">
+     	{{ makefacultyform.hidden_tag() }}
+	  <div class="form-group">
+	    <label for="facultyname">Faculty name</label>
+	    {{render_field(makefacultyform.name, class_='form-control', id='facultyname', required='true')}}
+	  </div>
+	  <button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>
+{%endblock%} 

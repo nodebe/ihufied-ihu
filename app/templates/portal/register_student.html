@@ -1,0 +1,78 @@
+{% extends 'portal.html' %}
+
+{%block page_content%}
+     <div class="bg-mattBlackLight p-3">
+        <h4 class="mb-2">Register student</h4>
+     </div>
+     <div class="mt-4">
+        <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        {% from 'includes/_formhelpers.html' import render_field %}
+        <div class="row">
+	        <div class="col-sm-6 mb-3">
+	            <div class="floating-label">
+	              <label for="floatingregnumber">Reg number</label>
+	              {{render_field(form.regnumber, class_='form-control', placeholder='Reg number', id='floatingregnumber', type='number')}}
+	            </div>
+	        </div>
+	        <div class="col-sm-6 mb-3">
+	            <div class="floating-label">
+	              <label for="floatingemail">Email</label>
+	              {{render_field(form.email, class_='form-control', placeholder='Email', id='floatingemail')}}
+	            </div>
+	        </div>
+        </div>
+        <div class="row">
+	        <div class="col-sm-6 mb-3">
+	        	<div class="floating-label">
+	              <label for="floatingdepartment"></label>
+	              {{render_field(form.department, class_='custom-select form-control', placeholder='Department', id='floatingdepartment')}}
+	            </div>
+	        </div>
+	         <div class="col-sm-6 mb-3">
+	            <div class="floating-label">
+	              <label for="floatingfirstname">Level</label>
+	              {{render_field(form.level, class_='form-control custom-select', placeholder='Level', id='floatinglevel')}}
+	            </div>
+	        </div>
+        </div>
+        <div class="row">
+	        <div class="col-sm-6 mb-3">
+	            <div class="floating-label">
+	              <label for="floatingfirstname">First name</label>
+	              {{render_field(form.firstname, class_='form-control', placeholder='First name', id='floatingfirstname')}}
+	            </div>
+	        </div>
+	         <div class="col-sm-6 mb-3">
+	            <div class="floating-label">
+	              <label for="floatinglastname">Last name</label>
+	              {{render_field(form.lastname, class_='form-control', placeholder='Last name', id='floatinglastname')}}
+	            </div>
+	        </div>
+        </div>
+        <div class="row">
+	        <div class="col-sm-6 mb-3">
+	            <div class="floating-label">
+	              <label for="floatingmiddlename">Middle name</label>
+	              {{render_field(form.middlename, class_='form-control', placeholder='Middle name', id='floatingmiddlename')}}
+	            </div>
+	        </div>
+	         <div class="col-sm-6 mb-3">
+	            <div class="floating-label">
+	              <label for="floatingphone">Phone number</label>
+	              {{render_field(form.phone, class_='form-control', placeholder='Phone number', id='floatingphone')}}
+	            </div>
+	        </div>
+        </div>
+        <div class="row">
+        	<div class="col-sm-12 mb-3">
+	        <div class="custom-file">
+        		<label for="floatingemail">Student Image</label>
+	        	{{render_field(form.image, class_='form-control-file border', placeholder='Image', id='customFile')}}
+	        </div>
+	    </div>
+    	</div>
+        <button type="submit" class="btn btn-primary btn-block col-sm-2">Submit</button>
+    </form>
+</div>
+{%endblock%}

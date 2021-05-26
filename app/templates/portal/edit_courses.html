@@ -1,0 +1,58 @@
+{%extends 'portal.html'%}
+{%block page_content%}
+   
+<form action="{{url_for('portal.submit_registered_courses', student_number=student.regnumber)}}" method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="bg-mattBlackLight p-1">
+        <h1 class="mb-1">
+            {{student.lastname}} {{student.middlename}} {{student.firstname}}
+            <span style="float:right; margin-right:10px;"> </span>
+         </h1>       
+    </div>
+
+    <div class="container">
+        <div class="row">
+            
+                <div class="col-sm-4 mt-5">
+                    <img style="max-width: 100%; height: auto; " class="pt-1" src="{{current}}" alt="" srcset="">
+                </div>
+
+                <div class="col-sm-6">
+                    <h1 class="mb-4"> Select Courses</h1>
+                   
+                        {% for course in courses%}
+                        <div class="ml-4">
+                            {%if course in student.course_subscription%}
+                            <input type="checkbox" checked="true" class="form-check-input" name="course_select" value="{{course.title}}" id="">{{course.name}} ({{course.title}})
+                            {%else%}
+                            <input type="checkbox" name="course_select"  class="form-check-input"  value="{{ course.title }}" id="">{{course.name}} ({{course.title}})
+                            {%endif%}
+                        </div>
+
+                       
+                    {%endfor%}
+                </div>
+        </div>
+
+        <div class="row">
+         
+                <div class="col-sm-3">
+                 
+                   
+                        <div class="form-group pt-2" >
+                            {{form.picture.label()}}
+                            {{form.picture(class="form-control-file border")}}
+                        </div>
+                
+                </div>
+            
+        </div>
+                    
+          
+        
+    </div>
+    <div>
+        {{form.submit(class='btn btn-primary')}}
+    </div>
+</form>
+{%endblock page_content%}

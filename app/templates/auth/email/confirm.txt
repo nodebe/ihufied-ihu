@@ -1,0 +1,12 @@
+Dear {{user.username}},
+
+Welcome to Ihufied,
+
+to confirm your account kindly click on the following link,
+
+{{url_for('auth.confirm', token=token, _external=True)}}
+
+Sincerely, 
+Project Ihu Team.
+
+Note: replies to this email are not monitored.

@@ -1,0 +1,75 @@
+{% extends 'portal.html'%}
+
+{% block page_content %}
+<div class="bg-mattBlackLight p-3">
+    <h4 class="mb-2">Student Details</h4>
+ </div>
+
+ <div class= "container-fluid p-3">
+   
+    <div class="row">
+        {%for student in student%}
+        <div class="col-sm-3 mt-4 pt-1">
+            <!-- remember to change the filename to correspond to yours  -->
+            <img style="max-width: 100%; height: auto; " src="{{url_for('static', filename='images/' + student.image_name)}}" alt="" srcset="">
+        </div>
+
+        <div class="col-sm-8 sd p-3" style="height: 400px; border-radius: 5px;">
+            <table style="width: 100%;"> 
+                <tr>
+                    <th><h4>Full Name</h4></th>
+                    <td><h4>{{student.lastname}} {{student.middlename}} {{student.firstname}}</h4></td>
+                </tr>
+                <tr>
+                    <th><h4>Registration Number</h4></th>
+                    <td><h4>{{student.regnumber}}</h4></td>
+                </tr>
+                <tr>
+                    <th><h4>Department</h4></th>
+                    <td><h4>{{student.department.name}}</h4></td>
+                </tr>
+                <tr>
+                    <th><h4>Email</h4></th>
+                    <td><h4>{{student.email}}</h4></td>
+                </tr>
+                <tr>
+                    <th><h4>Phone Number</h4></th>
+                    <td><h4>{{student.phone}}</h4></td>
+                </tr>
+                
+            </table>
+            <button type="button" class="btn btn-primary btn-block" data-target="#courses" data-toggle="modal" >View Registered Courses</button>
+            <div class="modal" id="courses">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"> Registered Courses</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="registered courses">
+                            {% for courses in student.course_subscription%}
+                                <ul>
+                                    <li> {{courses.name}} <br></li>
+                                   
+                                </ul>
+                                      
+                            {%endfor%}
+                            
+                            <form action="{{url_for('portal.edit_courses', student_reg=student.regnumber)}}" method="POST">
+                                <button type="submit" class="btn btn-primary btn-block" name="courses" value="{{student.id}}">Edit Courses/Photo </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {%endfor%}
+    </div>
+   
+
+ </div>
+    
+
+
+{%endblock page_content%}

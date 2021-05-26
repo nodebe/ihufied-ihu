@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%import 'bootstrap/wtf.html' as wtf%}
+
+{%block page_content%}
+
+<div class="container" style="width: 55%">
+    <div class="page-header">
+        <h1>Login</h1>
+    </div>
+    {{ wtf.quick_form(form) }}
+    <hr/>
+    <p class="text-muted">New User?
+         <a href="{{url_for('auth.signup')}}">
+        Click here to register
+        </a>
+    </p>
+
+    <p class="text-muted">Forgot Password?
+        <a href="{{url_for('auth.password_reset_request')}}">
+       Click here
+       </a>
+   </p>
+</div>
+{%endblock%}

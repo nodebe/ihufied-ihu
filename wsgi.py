@@ -1,0 +1,1 @@
+from ihufied import app

@@ -165,3 +165,16 @@ def submit_registered_courses(student_number):
 	except Exception as e:
 		flash(str(e), 'warning')
 		return redirect(url_for('portal.register_student_courses'))
+
+@portal.route('/delete_student_data/<string:student_number>')
+@login_required
+def delete_student_data(student_number):
+	try:
+		student = User.query.filter_by(regnumber=student_number).first()
+		db.session.delete(student)
+		db.session.commit()
+		flash('Student data removed successfully.', 'success')
+		return redirect(url_for('portal.registered_students'))
+	except Exception as e:
+		flash(str(e), 'warning')
+		return redirect(url_for('portal.registered_students'))

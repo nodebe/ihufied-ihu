@@ -30,7 +30,6 @@ def insert_picture(database_picture, picture_name):
     with open(picture_path, 'wb') as f:
         decoded_image_data = base64.decodebytes(imgdata)
         f.write(decoded_image_data)
-    print(picture_path)
 
 
 def update_picture (form_picture):

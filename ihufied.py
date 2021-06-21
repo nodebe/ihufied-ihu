@@ -24,4 +24,4 @@ def test(test_names):
 
 
 if __name__ == '__main__':
-    app.run( threaded=True, debug=True)
+    app.run( threaded=True)

@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from flask_login import login_required
 from app.models import Course
 import json
@@ -50,3 +50,8 @@ def poststudent():
     student_and_course['reg_no'] = data['reg_no']
     student_and_course['course_code'] = data['coursecode']
     student_reg_nos.append(student_and_course)
+
+@main.route('/clearstudents')
+def clearstudents():
+    student_reg_nos = []
+    return redirect(url_for('portal.remote_monitoring'))

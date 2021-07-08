@@ -41,7 +41,7 @@ def getuser(course_title):
 
 global student_reg_nos
 
-student_reg_nos = [{'reg_no':'2015364091','course_code':'ECE541'},{'reg_no':'2015364092','course_code':'ECE541'}]
+student_reg_nos = [{'reg_no':'2015364030','course_code':'ECE541'}]
 
 @main.route('/poststudent', methods = ['POST'])
 def poststudent():

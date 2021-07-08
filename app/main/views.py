@@ -39,4 +39,14 @@ def getuser(course_title):
 
 #getting only students in that department registered can be done by inserting the id into the routing channel
 
+global student_reg_nos
 
+student_reg_nos = [{'reg_no':'2015364091','course_code':'ECE541'},{'reg_no':'2015364092','course_code':'ECE541'}]
+
+@main.route('/poststudent', methods = ['POST'])
+def poststudent():
+    student_and_course = {}
+    data = json.loads(request.get_data())
+    student_and_course['reg_no'] = data['reg_no']
+    student_and_course['course_code'] = data['coursecode']
+    student_reg_nos.append(student_and_course)

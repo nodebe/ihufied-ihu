@@ -6,6 +6,7 @@ from app.utils import save_picture, update_picture, insert_picture
 from passlib.hash import sha256_crypt as sha256
 from app.models import User, Faculty, Department, Course
 from app.portal.forms import MakeFacultyForm, MakeDepartmentForm, MakeCourseForm, MakeStudentForm, RegisterStudentCourse,EditStudentCourses
+from app.main.views import student_reg_nos
 
 ###################
 #### ALL-VIEWS ####
@@ -50,10 +51,35 @@ def register_student_courses():
 			return redirect(url_for('portal.register_student_courses'))
 	return render_template('/portal/register_student_courses.html', form=form, courses=[], student_number='')
 
+
+
+verified_students_list = []
+reg_nos_list = []
+
 @portal.route('/remote_monitoring')
 @login_required
 def remote_monitoring():
-    return render_template('/portal/monitoring.html')
+	global verified_students_list, reg_nos_list
+
+	for student_details in student_reg_nos[::-1]:
+		if student_details['reg_no'] not in reg_nos_list:
+			verified_students = {}
+			student = User.query.filter_by(regnumber=student_details['reg_no']).first()
+			verified_students['firstname'] = student.firstname
+			verified_students['lastname'] = student.lastname
+			verified_students['regnumber'] = student_details['reg_no']
+			verified_students['course'] = student_details['course_code']
+			verified_students['imagename'] = student.image_name
+
+			#adding the verified student to the verified_student_list
+			verified_students_list.append(verified_students)
+			reg_nos_list.append(student_details['reg_no'])
+		else:
+			break
+
+	return render_template('/portal/monitoring.html', verified_students_list=verified_students_list)
+
+
 
 @portal.route('/registered_students', methods= ['GET','POST'])
 @login_required

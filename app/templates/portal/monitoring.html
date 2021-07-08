@@ -1,7 +1,41 @@
 {% extends 'portal.html' %}
-
 {%block page_content%}
+<body onload = "JavaScript:AutoRefresh(15000);">
      <div class="bg-mattBlackLight p-3">
         <h4 class="mb-2">Remote Monitoring</h4>
      </div>
+     <div class="container mt-3">          
+  <table class="table table-striped">
+    <thead>
+      <tr style="height:50px; border-bottom: 5px solid rgb(41, 40, 40)">
+        <th>Photo ID</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Reg number</th>
+        <th>Course</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% for student in verified_students_list %}
+      <tr border-bottom: 5px solid rgb(41, 40, 40)">
+      	<td>
+           <img class="rounded-circle" style="width: 70px; height: 70px;"
+              src="{{url_for('static', filename ='images/' + student.imagename)}}" alt="">
+        </td>
+        <td>{{student.firstname}}</td>
+        <td>{{student.lastname}}</td>
+        <td>{{student.regnumber}}</td>
+        <td>{{student.course}}</td>
+        
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<script type = "text/JavaScript">
+    function AutoRefresh( t ) {
+       setTimeout("location.reload(true);", t);
+    }
+</script>
+</body>
 {%endblock%}
